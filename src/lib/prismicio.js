@@ -23,73 +23,72 @@ const routes = [
   },
 ];
 
+const cache = new Map();
+
 /**
- * Creates a Prismic client for the project's repository. The client is used to
- * query content from the Prismic API.
- *
-
+ * A Prismic client for the project's repository. The client is used to query
+ * content from the Prismic API.
  */
-
 const client = prismic.createClient(sm.apiEndpoint, {
   routes,
+  fetch: async (url, options) => {
+    const { pathname } = new URL(url);
+
+    // Use cached results for `/documents/search` requests
+    if (/\/documents\/search\/?/.test(pathname)) {
+      // The cache key contains the requested URL and headers
+      const key = JSON.stringify({ url, options });
+
+      if (cache.has(key)) {
+        // If the cache contains a value for the key, return it
+        return new Response(cache.get(key));
+      } else {
+        // Otherwise, make the network request
+        const res = await fetch(url, options);
+
+        if (res.ok) {
+          // Using `.text()` allows the consumer to re-parse as
+          // JSON while being able to save to the cache reliably.
+          const text = await res.text();
+
+          // If the request was successful, save it to the cache
+          cache.set(key, text);
+
+          return new Response(text);
+        } else {
+          return res;
+        }
+      }
+    } else {
+      return await fetch(url, options);
+    }
+  },
 });
 
-/*
-
-Functions to fetch Prismic content
-
-*/
-
-// Cache for quicker builds
-let settings, menu, allPages, allBlogPosts;
+/**
+ * Functions to fetch Prismic content
+ */
 
 export async function getSettings() {
-  if (settings) {
-    return settings;
-  }
-
-  const response = client.getSingle("settings");
-  settings = await response;
-  return settings;
+  return await client.getSingle("settings");
 }
 
 export async function getMenu() {
-  if (menu) {
-    return menu;
-  }
-
-  const response = client.getSingle("menu");
-  menu = await response;
-  return menu;
+  return await client.getSingle("menu");
 }
 
 export async function getAllPages() {
-  if (allPages) {
-    return allPages;
-  }
-
-  const response = client.getAllByType("page");
-  allPages = await response;
-  return allPages;
+  return await client.getAllByType("page");
 }
 
 export async function getAllBlogPosts() {
-  if (allBlogPosts) {
-    return allBlogPosts;
-  }
-
-  const response = client.getAllByType("blogpost");
-  allBlogPosts = await response;
-
-  return allBlogPosts;
+  return await client.getAllByType("blogpost");
 }
 
 export async function getPageByUID(uid) {
-  const response = client.getByUID("page", uid);
-  return await response;
+  return await client.getByUID("page", uid);
 }
 
 export async function getHomepage() {
-  const response = client.getSingle("homepage");
-  return await response;
+  return await client.getSingle("homepage");
 }
