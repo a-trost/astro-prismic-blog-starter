@@ -1,13 +1,24 @@
 ---
+import * as prismicH from "@prismicio/helpers";
+
+const { copyright } = Astro.props;
+
 const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} YOUR NAME HERE. All rights reserved.
+  &copy; {today.getFullYear()}
+
+  <!-- You could install and use @prismicio/react here for rich text formatting -->
+  {
+    copyright
+      ? prismicH.asText(copyright)
+      : "YOUR NAME HERE. All rights reserved."
+  }
 </footer>
 <style>
-	footer {
-		padding: 25px;
-		text-align: center;
-	}
+  footer {
+    padding: 25px;
+    text-align: center;
+  }
 </style>

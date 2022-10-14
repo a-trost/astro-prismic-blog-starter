@@ -1,0 +1,20 @@
+---
+import Image from "../slices/Image/Image.astro";
+import RichText from "../slices/RichText/RichText.astro";
+
+const components = {
+  image: Image,
+  rich_text: RichText,
+};
+
+const { slices } = Astro.props;
+---
+
+<>
+  {
+    slices.map((slice, index) => {
+      const Component = components[slice.slice_type];
+      return <Component key={index} {...slice} />;
+    })
+  }
+</>

@@ -1,0 +1,123 @@
+{
+  "src/slices": {
+    "components": {
+      "image": {
+        "library": "src/slices",
+        "id": "image",
+        "name": "Image",
+        "description": "Image",
+        "model": {
+          "id": "image",
+          "type": "SharedSlice",
+          "name": "Image",
+          "description": "Image",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "Image",
+              "primary": {
+                "image": {
+                  "type": "Image",
+                  "config": {
+                    "label": "Image",
+                    "constraint": {},
+                    "thumbnails": []
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "image": {
+                "dimensions": {
+                  "width": 900,
+                  "height": 500
+                },
+                "alt": null,
+                "copyright": null,
+                "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+              }
+            },
+            "slice_type": "image"
+          }
+        },
+        "meta": {
+          "fileName": null,
+          "extension": null
+        },
+        "screenshotPaths": {}
+      },
+      "rich_text": {
+        "library": "src/slices",
+        "id": "rich_text",
+        "name": "RichText",
+        "description": "RichText",
+        "model": {
+          "id": "rich_text",
+          "type": "SharedSlice",
+          "name": "RichText",
+          "description": "RichText",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "RichText",
+              "primary": {
+                "text": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Text",
+                    "placeholder": "",
+                    "allowTargetBlank": true,
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "text": [
+                {
+                  "type": "paragraph",
+                  "text": "Deserunt deserunt amet reprehenderit adipisicing consectetur do consectetur amet ullamco nulla irure est. Ipsum labore proident ut quis officia mollit velit in cillum.",
+                  "spans": []
+                }
+              ]
+            },
+            "slice_type": "rich_text"
+          }
+        },
+        "meta": {
+          "fileName": null,
+          "extension": null
+        },
+        "screenshotPaths": {}
+      }
+    }
+  }
+}

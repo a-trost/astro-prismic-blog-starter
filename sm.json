@@ -1,0 +1,8 @@
+{
+  "_latest": "0.3.0",
+  "apiEndpoint": "https://astro-prismic-blog-starter.prismic.io/api/v2",
+  "libraries": [
+    "@/src/slices"
+  ],
+  "framework": "none"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "blogpost",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Managed",
+        "spans": []
+      }
+    ],
+    "date": "2022-05-14",
+    "featureImage": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72"
+    },
+    "slices": []
+  }
+}

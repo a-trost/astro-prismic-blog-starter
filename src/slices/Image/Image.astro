@@ -1,0 +1,17 @@
+---
+import * as prismicH from "@prismicio/helpers";
+const props = Astro.props;
+
+const image = props.primary?.image;
+const imageSrcSet = prismicH.asImageWidthSrcSet(image);
+---
+
+<div>
+  <img
+    src={image.url}
+    width={image.dimensions.width}
+    height={image.dimensions.height}
+    alt={image.alt}
+    srcset={imageSrcSet.srcset}
+  />
+</div>

@@ -1,57 +1,44 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import { getAllBlogPosts, getPageByUID } from "../lib/prismicio";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SliceZone from "../components/SliceZone.astro";
+import * as prismicH from "@prismicio/helpers";
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
-const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
-	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+const page = await getPageByUID("blog");
+const blogPosts = await getAllBlogPosts();
+
+const formattedPosts = await blogPosts.map((post) => {
+  return {
+    url: post.url,
+    title: prismicH.asText(post.data.title),
+    date: post.data.date,
+  };
+});
+
+console.log(
+  "🚀 ~ file: blog.astro ~ line 13 ~ blogPosts",
+  formattedPosts[0].title
 );
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			ul {
-				list-style-type: none;
-				padding: unset;
-			}
-			ul li {
-				display: flex;
-			}
-			ul li time {
-				flex: 0 0 130px;
-				font-style: italic;
-				color: #595959;
-			}
-			ul li a:visited {
-				color: #8e32dc;
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{posts.map((post) => (
-						<li>
-							<time datetime={post.frontmatter.pubDate}>
-								{new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', {
-									year: 'numeric',
-									month: 'short',
-									day: 'numeric',
-								})}
-							</time>
-							<a href={post.url}>{post.frontmatter.title}</a>
-						</li>
-					))}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout>
+  <SliceZone slices={page.data.slices} />
+  <section>
+    <ul>
+      {
+        formattedPosts.map(({ url, title, date }) => (
+          <li>
+            <time datetime={date}>
+              {new Date(date).toLocaleDateString("en-us", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </time>
+            <a href={url}>{title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

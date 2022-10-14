@@ -1,0 +1,19 @@
+[
+  {
+    "variation": "default",
+    "version": "sktwi1xtmkfgx8626",
+    "items": [
+      {}
+    ],
+    "primary": {
+      "text": [
+        {
+          "type": "paragraph",
+          "text": "Deserunt deserunt amet reprehenderit adipisicing consectetur do consectetur amet ullamco nulla irure est. Ipsum labore proident ut quis officia mollit velit in cillum.",
+          "spans": []
+        }
+      ]
+    },
+    "slice_type": "rich_text"
+  }
+]

@@ -1,0 +1,24 @@
+---
+import SliceZone from "../../components/SliceZone.astro";
+import * as prismicH from "@prismicio/helpers";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getAllBlogPosts } from "../../lib/prismicio";
+
+export async function getStaticPaths() {
+  const allBlogPosts = await getAllBlogPosts();
+
+  const paths = allBlogPosts.map((blogPost) => ({
+    params: { uid: blogPost.uid },
+    props: blogPost,
+  }));
+  return paths;
+}
+
+const blogPost = Astro.props;
+const title = prismicH.asHTML(blogPost.data.title);
+---
+
+<BaseLayout>
+  <Fragment set:html={title} />
+  <SliceZone slices={blogPost.data.slices} />
+</BaseLayout>

@@ -1,0 +1,24 @@
+---
+import SliceZone from "../components/SliceZone.astro";
+import * as prismicH from "@prismicio/helpers";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getAllPages } from "../lib/prismicio";
+
+export async function getStaticPaths() {
+  const allPages = await getAllPages();
+
+  const paths = allPages.map((page) => ({
+    params: { uid: page.uid },
+    props: page,
+  }));
+  return paths;
+}
+
+const page = Astro.props;
+const title = prismicH.asHTML(page.data.title);
+---
+
+<BaseLayout>
+  <Fragment set:html={title} />
+  <SliceZone slices={page.data.slices} />
+</BaseLayout>

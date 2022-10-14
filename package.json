@@ -8,12 +8,17 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "slicemachine": "start-slicemachine"
   },
   "dependencies": {
-    "astro": "^1.5.0",
     "@astrojs/mdx": "^0.11.4",
     "@astrojs/rss": "^1.0.2",
-    "@astrojs/sitemap": "^1.0.0"
+    "@astrojs/sitemap": "^1.0.0",
+    "@prismicio/client": "^6.7.1",
+    "astro": "^1.5.0"
+  },
+  "devDependencies": {
+    "slice-machine-ui": "^0.5.0"
   }
 }
