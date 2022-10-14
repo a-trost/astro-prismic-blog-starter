@@ -39,13 +39,14 @@ const client = prismic.createClient(sm.apiEndpoint, {
 Functions to fetch Prismic content
 
 */
+
 // Cache for quicker builds
 let settings, menu, allPages, allBlogPosts;
 
 export async function getSettings() {
-  // if (settings) {
-  //   return settings;
-  // }
+  if (settings) {
+    return settings;
+  }
 
   const response = client.getSingle("settings");
   settings = await response;
@@ -53,9 +54,9 @@ export async function getSettings() {
 }
 
 export async function getMenu() {
-  // if (menu) {
-  //   return menu;
-  // }
+  if (menu) {
+    return menu;
+  }
 
   const response = client.getSingle("menu");
   menu = await response;
@@ -63,9 +64,9 @@ export async function getMenu() {
 }
 
 export async function getAllPages() {
-  // if (allPages) {
-  //   return allPages;
-  // }
+  if (allPages) {
+    return allPages;
+  }
 
   const response = client.getAllByType("page");
   allPages = await response;
@@ -73,9 +74,9 @@ export async function getAllPages() {
 }
 
 export async function getAllBlogPosts() {
-  // if (allBlogPosts) {
-  //   return allBlogPosts;
-  // }
+  if (allBlogPosts) {
+    return allBlogPosts;
+  }
 
   const response = client.getAllByType("blogpost");
   allBlogPosts = await response;
